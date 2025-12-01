@@ -1,0 +1,17 @@
+apiVersion: policies.kubewarden.io/v1
+kind: ClusterAdmissionPolicy
+metadata:
+  name: ingress-force-ssl-require-tls
+spec:
+  module: ghcr.io/vvlisn/policies/ingress-force-ssl-require-tls:latest
+  mode: protect
+  rules:
+    - apiGroups: ["networking.k8s.io"]
+      apiVersions: ["v1"]
+      resources: ["ingresses"]
+      operations: ["CREATE", "UPDATE"]
+  mutating: false
+  settings:
+    validate_force_ssl_redirect: true
+
+
