@@ -1,0 +1,67 @@
+{
+  "uid": "1299d386-525b-4032-98ae-1949f69f9cfd",
+  "kind": {
+    "group": "networking.k8s.io",
+    "kind": "Ingress",
+    "version": "v1"
+  },
+  "resource": {
+    "group": "networking.k8s.io",
+    "version": "v1",
+    "resource": "ingresses"
+  },
+  "requestKind": {
+    "group": "networking.k8s.io",
+    "version": "v1",
+    "kind": "Ingress"
+  },
+  "requestResource": {
+    "group": "networking.k8s.io",
+    "version": "v1",
+    "resource": "ingresses"
+  },
+  "name": "ingress-no-tls",
+  "namespace": "default",
+  "operation": "CREATE",
+  "userInfo": {
+    "username": "kubernetes-admin",
+    "groups": [
+      "system:masters",
+      "system:authenticated"
+    ]
+  },
+  "object": {
+    "apiVersion": "networking.k8s.io/v1",
+    "kind": "Ingress",
+    "metadata": {
+      "name": "ingress-no-tls",
+      "namespace": "default",
+      "annotations": {
+        "nginx.ingress.kubernetes.io/force-ssl-redirect": "true"
+      }
+    },
+    "spec": {
+      "rules": [
+        {
+          "host": "example.com",
+          "http": {
+            "paths": [
+              {
+                "path": "/",
+                "pathType": "Prefix",
+                "backend": {
+                  "service": {
+                    "name": "example-service",
+                    "port": {
+                      "number": 80
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}
